@@ -1,32 +1,40 @@
 "use strict";
 module.exports = {
   async up(queryInterface, Sequelize) {
-    await queryInterface.createTable("GamesTags", {
+    await queryInterface.createTable("Games", {
       id: {
         allowNull: false,
         autoIncrement: true,
         primaryKey: true,
         type: Sequelize.INTEGER,
       },
-      GameId: {
-        type: Sequelize.INTEGER,
+      name: {
+        type: Sequelize.STRING,
         allowNull: false,
-        references: {
-          model: "Games",
-          key: "id",
-        },
-        onUpdate: "cascade",
-        onDelete: "cascade",
       },
-      TagId: {
+      background_image: {
+        type: Sequelize.STRING,
+        allowNull: false,
+      },
+      released: {
+        type: Sequelize.STRING,
+        allowNull: false,
+      },
+      description: {
+        type: Sequelize.TEXT,
+        allowNull: false,
+      },
+      gameId: {
         type: Sequelize.INTEGER,
         allowNull: false,
-        references: {
-          model: "Tags",
-          key: "id",
-        },
-        onUpdate: "cascade",
-        onDelete: "cascade",
+      },
+      rating: {
+        type: Sequelize.INTEGER,
+        allowNull: false,
+      },
+      price: {
+        type: Sequelize.INTEGER,
+        allowNull: false,
       },
       createdAt: {
         allowNull: false,
@@ -39,6 +47,6 @@ module.exports = {
     });
   },
   async down(queryInterface, Sequelize) {
-    await queryInterface.dropTable("GamesTags");
+    await queryInterface.dropTable("Games");
   },
 };
